@@ -1,0 +1,15 @@
+#! /bin/bash
+
+# Threshold for disk space (in percentage)
+threshold=1
+
+# Get disk space usage
+disk_space=$(df -H / | awk 'NR==2 {print $5}' | cut -d'%' -f1)
+
+# Check if disk space exceeds threshold
+if [ $disk_space -ge $threshold ]; then
+    # Log disk space alert
+    echo "$(date): Disk space is running low. Current disk space usage is $disk_space%." >> "E:/Totally New Bahgat/Courses/Data Management/iti/9 Months Data Management Scholarship/University Case Study/disk_space_alert.log"
+else
+    echo "$(date): Disk space is fine. Current disk space usage is $disk_space%." >> "E:/Totally New Bahgat/Courses/Data Management/iti/9 Months Data Management Scholarship/University Case Study/disk_space_alert.log"
+fi
